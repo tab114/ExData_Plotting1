@@ -4,6 +4,14 @@
 strptime("16/12/2006, 17:24:00", "%d/%m/%Y, %H:%M:%S")
 as.Date("16/12/2006", "%d/%m/%Y")
 
+library(sqldf)
+read.csv2.sql(file, sql= "SELECT * FROM file WHERE Date='1/2/2007' OR Date='2/2/2007'")
+head(subset(data, data$Date == "2/2/2007"))
+
+myFile <- "household_power_consumption.txt"
+mySql <- "SELECT * FROM file WHERE Date='1/2/2007' OR Date='2/2/2007'"
+dfData <- read.csv2.sql(myFile,mySql)
+
 
 ## Load Data and create the subsetted data frame
 file <- "household_power_consumption.txt"
@@ -37,3 +45,5 @@ load_data <- function() {
   data_2day <- subset(data, data$Date %in% as.Date(c("2007-02-01", "2007-02-02"), "%Y-%m-%d"))
   return(data_2day)
 }
+
+
